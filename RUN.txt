@@ -1,1 +1,12 @@
 gunicorn api:app -b 0.0.0.0:5656 -w 2 -k uvicorn.workers.UvicornWorker --timeout 120
+
+
+curl -X POST "http://localhost:5656/rerank"   -H "Content-Type: application/json"   -d '{
+    "query": "what is a python",
+    "documents": [
+      "Python is a programming language",
+      "Python is a type of snake",
+      "The Python language was created by Guido van Rossum"
+    ],
+    "top_k": 2
+  }'
